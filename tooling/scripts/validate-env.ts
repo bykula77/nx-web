@@ -34,18 +34,32 @@ if (existsSync(envLocalPath)) {
 
 // Define schemas inline to avoid import issues
 const serverEnvSchema = z.object({
+  // Supabase
   SUPABASE_SERVICE_ROLE_KEY: z.string().min(1, 'Required'),
   SUPABASE_DB_URL: z.string().url('Must be a valid URL'),
+  // Cloudflare
   CLOUDFLARE_ACCOUNT_ID: z.string().optional(),
+  CLOUDFLARE_API_TOKEN: z.string().optional(),
+  CLOUDFLARE_R2_ENDPOINT: z.string().optional(),
+  CLOUDFLARE_R2_BUCKET_NAME: z.string().optional(),
   CLOUDFLARE_R2_ACCESS_KEY_ID: z.string().optional(),
   CLOUDFLARE_R2_SECRET_ACCESS_KEY: z.string().optional(),
+  // Sanity
+  SANITY_API_TOKEN: z.string().optional(),
 });
 
 const clientEnvSchema = z.object({
+  // Supabase
   NEXT_PUBLIC_SUPABASE_URL: z.string().url('Must be a valid URL'),
   NEXT_PUBLIC_SUPABASE_ANON_KEY: z.string().min(1, 'Required'),
+  // Sanity
   SANITY_PROJECT_ID: z.string().optional(),
   SANITY_DATASET: z.string().optional(),
+  SANITY_API_VERSION: z.string().optional(),
+  // App URLs
+  APP_URL: z.string().optional(),
+  BACKOFFICE_URL: z.string().optional(),
+  CLIENT_PANEL_URL: z.string().optional(),
 });
 
 interface ValidationResult {

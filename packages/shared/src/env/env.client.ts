@@ -28,10 +28,17 @@ function parseClientEnv(): ClientEnv {
   const envSource = getClientEnvSource();
 
   const result = clientEnvSchema.safeParse({
+    // Supabase
     NEXT_PUBLIC_SUPABASE_URL: envSource.NEXT_PUBLIC_SUPABASE_URL,
     NEXT_PUBLIC_SUPABASE_ANON_KEY: envSource.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+    // Sanity
     SANITY_PROJECT_ID: envSource.SANITY_PROJECT_ID,
     SANITY_DATASET: envSource.SANITY_DATASET,
+    SANITY_API_VERSION: envSource.SANITY_API_VERSION,
+    // App URLs
+    APP_URL: envSource.APP_URL,
+    BACKOFFICE_URL: envSource.BACKOFFICE_URL,
+    CLIENT_PANEL_URL: envSource.CLIENT_PANEL_URL,
   });
 
   if (!result.success) {
