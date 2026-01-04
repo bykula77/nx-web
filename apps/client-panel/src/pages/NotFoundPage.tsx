@@ -14,7 +14,7 @@ export function NotFoundPage() {
       subTitle="Aradığınız sayfa bulunamadı."
       extra={
         <Button type="primary" onClick={() => navigate('/dashboard')}>
-          Dashboard'a Dön
+          Dashboard&apos;a Dön
         </Button>
       }
       style={{
