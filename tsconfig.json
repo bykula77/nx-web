@@ -1,0 +1,46 @@
+{
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "compilerOptions": {
+      "target": "ES2022",
+      "lib": ["ES2022", "DOM", "DOM.Iterable"],
+      "module": "ESNext",
+      "moduleResolution": "bundler",
+      "resolveJsonModule": true,
+      "isolatedModules": true,
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true,
+      "strict": true,
+      "strictNullChecks": true,
+      "noUnusedLocals": true,
+      "noUnusedParameters": true,
+      "noFallthroughCasesInSwitch": true,
+      "skipLibCheck": true,
+      "declaration": true,
+      "declarationMap": true,
+      "sourceMap": true,
+      "forceConsistentCasingInFileNames": true,
+      "baseUrl": ".",
+      "paths": {
+        "@nx-web/shared": ["packages/shared/src/index.ts"],
+        "@nx-web/shared/*": ["packages/shared/src/*"],
+        "@nx-web/ui": ["packages/ui/src/index.ts"],
+        "@nx-web/ui/*": ["packages/ui/src/*"],
+        "@nx-web/testing": ["packages/testing/src/index.ts"],
+        "@nx-web/testing/*": ["packages/testing/src/*"],
+        "@nx-web/supabase": ["packages/providers/supabase/src/index.ts"],
+        "@nx-web/supabase/*": ["packages/providers/supabase/src/*"],
+        "@nx-web/auth": ["packages/providers/auth/src/index.ts"],
+        "@nx-web/auth/*": ["packages/providers/auth/src/*"],
+        "@nx-web/cloudflare": ["packages/providers/cloudflare/src/index.ts"],
+        "@nx-web/cloudflare/*": ["packages/providers/cloudflare/src/*"],
+        "@nx-web/domains/*": ["packages/domains/*/src/index.ts"]
+      }
+    },
+    "exclude": [
+      "node_modules",
+      "**/node_modules",
+      "**/dist",
+      "**/.astro",
+      "**/coverage"
+    ]
+  }

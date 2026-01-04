@@ -1,0 +1,68 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  ctaText?: string;
+  ctaHref?: string;
+  secondaryCtaText?: string;
+  secondaryCtaHref?: string;
+}
+
+const {
+  title,
+  subtitle,
+  ctaText = 'Hemen Başla',
+  ctaHref = '/register',
+  secondaryCtaText = 'Daha Fazla',
+  secondaryCtaHref = '#features',
+} = Astro.props;
+---
+
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+  <!-- Background -->
+  <div class="absolute inset-0 bg-hero-pattern"></div>
+  <div class="absolute inset-0 bg-black/20"></div>
+
+  <!-- Decorative Elements -->
+  <div class="absolute top-20 left-10 w-72 h-72 bg-white/10 rounded-full blur-3xl"></div>
+  <div class="absolute bottom-20 right-10 w-96 h-96 bg-secondary-500/20 rounded-full blur-3xl"></div>
+
+  <!-- Content -->
+  <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center">
+    <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 text-balance">
+      {title}
+    </h1>
+
+    {subtitle && (
+      <p class="text-lg sm:text-xl md:text-2xl text-white/80 mb-8 max-w-2xl mx-auto text-balance">
+        {subtitle}
+      </p>
+    )}
+
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a
+        href={ctaHref}
+        class="btn bg-white text-primary-600 hover:bg-gray-100 px-8 py-4 text-lg shadow-xl"
+      >
+        {ctaText}
+        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+      <a
+        href={secondaryCtaHref}
+        class="btn text-white border-2 border-white/30 hover:bg-white/10 px-8 py-4 text-lg"
+      >
+        {secondaryCtaText}
+      </a>
+    </div>
+  </div>
+
+  <!-- Scroll Indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+    <svg class="w-6 h-6 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+    </svg>
+  </div>
+</section>
+

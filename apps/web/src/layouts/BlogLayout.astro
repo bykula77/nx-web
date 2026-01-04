@@ -1,0 +1,94 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Blog yazılarımızı keşfedin' } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>{title}</title>
+  </head>
+  <body class="flex flex-col min-h-screen bg-gray-50">
+    <Header />
+    <main class="flex-grow">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="lg:grid lg:grid-cols-12 lg:gap-8">
+          <!-- Main Content -->
+          <div class="lg:col-span-8">
+            <slot />
+          </div>
+
+          <!-- Sidebar -->
+          <aside class="mt-8 lg:mt-0 lg:col-span-4">
+            <div class="sticky top-8 space-y-8">
+              <!-- Categories -->
+              <div class="card p-6">
+                <h3 class="text-lg font-semibold mb-4">Kategoriler</h3>
+                <ul class="space-y-2">
+                  <li>
+                    <a href="/blog" class="text-gray-600 hover:text-primary-600 transition-colors">
+                      Tüm Yazılar
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/blog?category=tech" class="text-gray-600 hover:text-primary-600 transition-colors">
+                      Teknoloji
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/blog?category=design" class="text-gray-600 hover:text-primary-600 transition-colors">
+                      Tasarım
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/blog?category=news" class="text-gray-600 hover:text-primary-600 transition-colors">
+                      Haberler
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Newsletter -->
+              <div class="card p-6 bg-gradient-to-br from-primary-500 to-secondary-500 text-white">
+                <h3 class="text-lg font-semibold mb-2">Bültene Abone Ol</h3>
+                <p class="text-sm text-white/80 mb-4">
+                  En son yazılarımızdan haberdar olun.
+                </p>
+                <form class="space-y-3">
+                  <input
+                    type="email"
+                    placeholder="E-posta adresiniz"
+                    class="w-full px-4 py-2 rounded-lg text-gray-900 placeholder-gray-500"
+                  />
+                  <button type="submit" class="w-full px-4 py-2 bg-white text-primary-600 font-medium rounded-lg hover:bg-gray-100 transition-colors">
+                    Abone Ol
+                  </button>
+                </form>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </main>
+    <Footer />
+  </body>
+</html>
+

@@ -1,0 +1,12 @@
+packages:
+  # Uygulamalar
+  - "apps/*"
+
+  # Paketler
+  - "packages/*"
+  - "packages/domains/*"
+  - "packages/providers/*"
+  - "packages/config/*"
+
+  # Tooling
+  - "tooling/*"

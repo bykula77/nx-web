@@ -1,0 +1,104 @@
+---
+import Navigation from './Navigation.astro';
+
+interface Props {
+  transparent?: boolean;
+}
+
+const { transparent = false } = Astro.props;
+---
+
+<header
+  class:list={[
+    'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
+    transparent ? 'bg-transparent' : 'bg-white/90 backdrop-blur-md shadow-sm',
+  ]}
+  id="header"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 md:h-20">
+      <!-- Logo -->
+      <a href="/" class="flex items-center space-x-2">
+        <div class="w-8 h-8 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-lg"></div>
+        <span class:list={['font-bold text-xl', transparent ? 'text-white' : 'text-gray-900']}>
+          NX Web
+        </span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <Navigation transparent={transparent} />
+
+      <!-- Mobile Menu Button -->
+      <button
+        id="mobile-menu-btn"
+        class="md:hidden p-2 rounded-lg hover:bg-gray-100/10"
+        aria-label="Menu"
+      >
+        <svg
+          class:list={['w-6 h-6', transparent ? 'text-white' : 'text-gray-900']}
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"
+          />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div
+    id="mobile-menu"
+    class="hidden md:hidden bg-white border-t border-gray-100 shadow-lg"
+  >
+    <nav class="px-4 py-4 space-y-2">
+      <a href="/" class="block px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-100">
+        Ana Sayfa
+      </a>
+      <a href="/about" class="block px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-100">
+        Hakkımızda
+      </a>
+      <a href="/pricing" class="block px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-100">
+        Fiyatlandırma
+      </a>
+      <a href="/blog" class="block px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-100">
+        Blog
+      </a>
+      <a href="/contact" class="block px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-100">
+        İletişim
+      </a>
+      <div class="pt-2 border-t border-gray-100">
+        <a href="/login" class="block px-4 py-2 text-center rounded-lg bg-primary-600 text-white">
+          Giriş Yap
+        </a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const header = document.getElementById('header');
+
+  menuBtn?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+  });
+
+  // Scroll effect for transparent header
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      header?.classList.remove('bg-transparent');
+      header?.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-sm');
+    } else if (header?.dataset.transparent === 'true') {
+      header?.classList.add('bg-transparent');
+      header?.classList.remove('bg-white/90', 'backdrop-blur-md', 'shadow-sm');
+    }
+  });
+</script>
+

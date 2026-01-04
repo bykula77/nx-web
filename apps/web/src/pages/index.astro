@@ -1,0 +1,155 @@
+---
+import LandingLayout from '../layouts/LandingLayout.astro';
+import Hero from '../components/Hero.astro';
+import FeatureCard from '../components/FeatureCard.astro';
+import TestimonialCard from '../components/TestimonialCard.astro';
+import CTA from '../components/CTA.astro';
+
+const features = [
+  {
+    icon: 'rocket',
+    title: 'Hızlı Performans',
+    description: 'Modern teknolojiler ile yıldırım hızında yükleme süreleri.',
+  },
+  {
+    icon: 'shield',
+    title: 'Güvenli Altyapı',
+    description: 'Enterprise seviyesinde güvenlik standartları ile verileriniz güvende.',
+  },
+  {
+    icon: 'zap',
+    title: 'Kolay Entegrasyon',
+    description: 'Mevcut sistemlerinizle dakikalar içinde entegre edin.',
+  },
+  {
+    icon: 'globe',
+    title: 'Global CDN',
+    description: 'Dünya genelinde dağıtılmış sunucular ile her yerden hızlı erişim.',
+  },
+  {
+    icon: 'chart',
+    title: 'Detaylı Analitik',
+    description: 'İşletmenizi büyütmek için güçlü analitik araçları.',
+  },
+  {
+    icon: 'users',
+    title: '7/24 Destek',
+    description: 'Uzman ekibimiz her zaman yanınızda.',
+  },
+];
+
+const testimonials = [
+  {
+    quote: 'Bu platform sayesinde işlerimizi %40 daha hızlı yönetmeye başladık. Kesinlikle tavsiye ediyorum.',
+    author: 'Ahmet Yılmaz',
+    role: 'CEO',
+    company: 'TechStart',
+  },
+  {
+    quote: 'Müşteri deneyimimizi tamamen dönüştürdü. Artık çok daha verimli çalışıyoruz.',
+    author: 'Elif Demir',
+    role: 'Ürün Müdürü',
+    company: 'InnovateCo',
+  },
+  {
+    quote: 'Entegrasyon süreci inanılmaz kolaydı. Bir günde sisteme geçiş yaptık.',
+    author: 'Mehmet Kaya',
+    role: 'CTO',
+    company: 'DataFlow',
+  },
+];
+---
+
+<LandingLayout title="NX Web - Modern Web Çözümleri">
+  <!-- Hero -->
+  <Hero
+    title="İşinizi Dijital Dünyada Büyütün"
+    subtitle="Modern, hızlı ve güvenli web çözümleri ile işletmenizi bir üst seviyeye taşıyın."
+    ctaText="Ücretsiz Deneyin"
+    ctaHref="/register"
+    secondaryCtaText="Özellikleri Keşfedin"
+    secondaryCtaHref="#features"
+  />
+
+  <!-- Features -->
+  <section id="features" class="section bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12 md:mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">
+          Neden <span class="gradient-text">NX Web</span>?
+        </h2>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+          İşletmenizi büyütmek için ihtiyacınız olan tüm araçlar tek bir platformda.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        {features.map((feature) => (
+          <FeatureCard
+            icon={feature.icon}
+            title={feature.title}
+            description={feature.description}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="section">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div>
+          <div class="text-4xl md:text-5xl font-bold gradient-text mb-2">10K+</div>
+          <div class="text-gray-600">Aktif Kullanıcı</div>
+        </div>
+        <div>
+          <div class="text-4xl md:text-5xl font-bold gradient-text mb-2">99.9%</div>
+          <div class="text-gray-600">Uptime Garantisi</div>
+        </div>
+        <div>
+          <div class="text-4xl md:text-5xl font-bold gradient-text mb-2">50+</div>
+          <div class="text-gray-600">Entegrasyon</div>
+        </div>
+        <div>
+          <div class="text-4xl md:text-5xl font-bold gradient-text mb-2">24/7</div>
+          <div class="text-gray-600">Destek</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12 md:mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">
+          Müşterilerimiz <span class="gradient-text">Ne Diyor</span>?
+        </h2>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+          Binlerce işletme NX Web ile büyüyor.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        {testimonials.map((testimonial) => (
+          <TestimonialCard
+            quote={testimonial.quote}
+            author={testimonial.author}
+            role={testimonial.role}
+            company={testimonial.company}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <CTA
+    title="Hemen Başlamaya Hazır mısınız?"
+    description="14 gün ücretsiz deneme ile tüm özellikleri keşfedin. Kredi kartı gerekmez."
+    ctaText="Ücretsiz Deneyin"
+    ctaHref="/register"
+  />
+</LandingLayout>
+

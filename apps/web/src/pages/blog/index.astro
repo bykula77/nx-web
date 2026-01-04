@@ -1,0 +1,142 @@
+---
+import BlogLayout from '../../layouts/BlogLayout.astro';
+// import { sanityClient } from '../../sanity/client';
+// import { getAllPostsQuery } from '../../sanity/queries';
+// import type { Post } from '../../sanity/types';
+
+// In production, uncomment to fetch from Sanity:
+// const posts = await sanityClient.fetch<Post[]>(getAllPostsQuery);
+
+// Mock data for development
+const posts = [
+  {
+    _id: '1',
+    title: 'Modern Web Geliştirmede En İyi Uygulamalar',
+    slug: { current: 'modern-web-gelistirmede-en-iyi-uygulamalar' },
+    excerpt: 'Web geliştirmede performans, erişilebilirlik ve kullanıcı deneyimi için en iyi uygulamaları keşfedin.',
+    publishedAt: '2026-01-02',
+    author: { name: 'Ahmet Yılmaz', image: null },
+    category: { title: 'Teknoloji', slug: { current: 'tech' } },
+    mainImage: null,
+  },
+  {
+    _id: '2',
+    title: 'React 19 ile Gelen Yenilikler',
+    slug: { current: 'react-19-ile-gelen-yenilikler' },
+    excerpt: 'React 19 sürümünün getirdiği yeni özellikler ve performans iyileştirmeleri hakkında detaylı bir bakış.',
+    publishedAt: '2025-12-28',
+    author: { name: 'Elif Demir', image: null },
+    category: { title: 'Teknoloji', slug: { current: 'tech' } },
+    mainImage: null,
+  },
+  {
+    _id: '3',
+    title: 'UI/UX Tasarımında 2026 Trendleri',
+    slug: { current: 'ui-ux-tasariminda-2026-trendleri' },
+    excerpt: '2026 yılında öne çıkacak tasarım trendleri ve kullanıcı deneyimi yaklaşımları.',
+    publishedAt: '2025-12-20',
+    author: { name: 'Mehmet Kaya', image: null },
+    category: { title: 'Tasarım', slug: { current: 'design' } },
+    mainImage: null,
+  },
+  {
+    _id: '4',
+    title: 'Tailwind CSS ile Hızlı Prototipleme',
+    slug: { current: 'tailwind-css-ile-hizli-prototipleme' },
+    excerpt: 'Tailwind CSS kullanarak nasıl hızlı ve tutarlı UI prototipleri oluşturabilirsiniz.',
+    publishedAt: '2025-12-15',
+    author: { name: 'Ayşe Şahin', image: null },
+    category: { title: 'Tasarım', slug: { current: 'design' } },
+    mainImage: null,
+  },
+];
+
+const formatDate = (dateString: string) => {
+  return new Date(dateString).toLocaleDateString('tr-TR', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+};
+---
+
+<BlogLayout title="Blog - NX Web">
+  <div>
+    <h1 class="text-3xl md:text-4xl font-bold mb-2">Blog</h1>
+    <p class="text-gray-600 mb-8">En son yazılarımız ve güncellemelerimiz.</p>
+
+    <div class="space-y-8">
+      {posts.map((post) => (
+        <article class="card-hover p-6">
+          <div class="flex flex-col md:flex-row gap-6">
+            <!-- Thumbnail -->
+            <div class="md:w-48 flex-shrink-0">
+              {post.mainImage ? (
+                <img
+                  src={post.mainImage}
+                  alt={post.title}
+                  class="w-full h-32 md:h-full object-cover rounded-xl"
+                />
+              ) : (
+                <div class="w-full h-32 md:h-full bg-gradient-to-br from-primary-500 to-secondary-500 rounded-xl flex items-center justify-center">
+                  <svg class="w-12 h-12 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                  </svg>
+                </div>
+              )}
+            </div>
+
+            <!-- Content -->
+            <div class="flex-1">
+              <div class="flex items-center gap-3 text-sm text-gray-500 mb-2">
+                {post.category && (
+                  <a
+                    href={`/blog?category=${post.category.slug.current}`}
+                    class="text-primary-600 hover:underline"
+                  >
+                    {post.category.title}
+                  </a>
+                )}
+                <span>•</span>
+                <time datetime={post.publishedAt}>
+                  {formatDate(post.publishedAt)}
+                </time>
+              </div>
+
+              <h2 class="text-xl font-bold mb-2">
+                <a
+                  href={`/blog/${post.slug.current}`}
+                  class="hover:text-primary-600 transition-colors"
+                >
+                  {post.title}
+                </a>
+              </h2>
+
+              {post.excerpt && (
+                <p class="text-gray-600 mb-4 line-clamp-2">{post.excerpt}</p>
+              )}
+
+              <div class="flex items-center justify-between">
+                {post.author && (
+                  <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-sm font-medium">
+                      {post.author.name.charAt(0)}
+                    </div>
+                    <span class="text-sm text-gray-600">{post.author.name}</span>
+                  </div>
+                )}
+                <a
+                  href={`/blog/${post.slug.current}`}
+                  class="text-primary-600 font-medium text-sm hover:underline"
+                >
+                  Devamını Oku →
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</BlogLayout>
+

@@ -1,0 +1,52 @@
+---
+interface Props {
+  transparent?: boolean;
+}
+
+const { transparent = false } = Astro.props;
+
+const navLinks = [
+  { href: '/', label: 'Ana Sayfa' },
+  { href: '/about', label: 'Hakkımızda' },
+  { href: '/pricing', label: 'Fiyatlandırma' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/contact', label: 'İletişim' },
+];
+---
+
+<nav class="hidden md:flex items-center space-x-1">
+  {navLinks.map((link) => (
+    <a
+      href={link.href}
+      class:list={[
+        'px-4 py-2 rounded-lg font-medium transition-colors',
+        transparent
+          ? 'text-white/90 hover:text-white hover:bg-white/10'
+          : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100',
+      ]}
+    >
+      {link.label}
+    </a>
+  ))}
+
+  <div class="ml-4 flex items-center space-x-3">
+    <a
+      href="/login"
+      class:list={[
+        'px-4 py-2 rounded-lg font-medium transition-colors',
+        transparent
+          ? 'text-white hover:bg-white/10'
+          : 'text-gray-700 hover:bg-gray-100',
+      ]}
+    >
+      Giriş
+    </a>
+    <a
+      href="/register"
+      class="btn-primary"
+    >
+      Başla
+    </a>
+  </div>
+</nav>
+

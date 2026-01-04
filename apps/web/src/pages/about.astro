@@ -1,0 +1,142 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTA from '../components/CTA.astro';
+
+const team = [
+  {
+    name: 'Ahmet Yılmaz',
+    role: 'CEO & Kurucu',
+    bio: '10+ yıl teknoloji sektörü deneyimi',
+  },
+  {
+    name: 'Elif Demir',
+    role: 'CTO',
+    bio: 'Yazılım mühendisliği uzmanı',
+  },
+  {
+    name: 'Mehmet Kaya',
+    role: 'Tasarım Direktörü',
+    bio: 'UX/UI tasarım lideri',
+  },
+  {
+    name: 'Ayşe Şahin',
+    role: 'Pazarlama Müdürü',
+    bio: 'Dijital pazarlama stratejisti',
+  },
+];
+
+const values = [
+  {
+    title: 'İnovasyon',
+    description: 'Sürekli yenilik ve gelişim odaklı çalışıyoruz.',
+  },
+  {
+    title: 'Güvenilirlik',
+    description: 'Müşterilerimize verdiğimiz sözleri tutarız.',
+  },
+  {
+    title: 'Şeffaflık',
+    description: 'Tüm süreçlerde açık ve dürüst iletişim.',
+  },
+  {
+    title: 'Müşteri Odaklılık',
+    description: 'Her kararımızda müşteriyi merkeze alırız.',
+  },
+];
+---
+
+<BaseLayout title="Hakkımızda - NX Web">
+  <!-- Hero -->
+  <section class="pt-32 pb-16 bg-gradient-to-b from-gray-50 to-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-6">
+        Biz <span class="gradient-text">Kimiz</span>?
+      </h1>
+      <p class="text-lg md:text-xl text-gray-600">
+        Modern web çözümleri ile işletmelerin dijital dönüşümüne liderlik ediyoruz.
+        2020'den bu yana binlerce işletmenin büyümesine katkı sağladık.
+      </p>
+    </div>
+  </section>
+
+  <!-- Story -->
+  <section class="section">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-3xl md:text-4xl font-bold mb-6">Hikayemiz</h2>
+          <div class="space-y-4 text-gray-600">
+            <p>
+              NX Web, 2020 yılında küçük bir ekip tarafından kuruldu. Amacımız,
+              işletmelerin dijital dünyada daha güçlü var olmasını sağlamaktı.
+            </p>
+            <p>
+              Bugün, 10.000'den fazla aktif kullanıcı ve 50'den fazla entegrasyonla
+              sektörün lider platformlarından biri haline geldik.
+            </p>
+            <p>
+              Misyonumuz, her ölçekteki işletmenin teknolojiden maksimum fayda
+              sağlamasına yardımcı olmaktır.
+            </p>
+          </div>
+        </div>
+        <div class="relative">
+          <div class="aspect-square bg-gradient-to-br from-primary-500 to-secondary-500 rounded-4xl"></div>
+          <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-yellow-400 rounded-2xl -z-10"></div>
+          <div class="absolute -top-6 -right-6 w-24 h-24 bg-pink-400 rounded-2xl -z-10"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="section bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">Değerlerimiz</h2>
+        <p class="text-lg text-gray-600">Bizi biz yapan temel ilkeler.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {values.map((value) => (
+          <div class="card p-6 text-center">
+            <h3 class="text-xl font-semibold mb-2">{value.title}</h3>
+            <p class="text-gray-600">{value.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="section">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">Ekibimiz</h2>
+        <p class="text-lg text-gray-600">Tutkulu profesyonellerden oluşan ekibimiz.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {team.map((member) => (
+          <div class="text-center">
+            <div class="w-32 h-32 mx-auto mb-4 rounded-full bg-gradient-to-br from-primary-500 to-secondary-500 flex items-center justify-center text-white text-3xl font-bold">
+              {member.name.charAt(0)}
+            </div>
+            <h3 class="text-xl font-semibold">{member.name}</h3>
+            <p class="text-primary-600 font-medium">{member.role}</p>
+            <p class="text-gray-600 text-sm mt-1">{member.bio}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <CTA
+    title="Ekibimize Katılın"
+    description="Yetenekli profesyonelleri arıyoruz. Açık pozisyonlarımıza göz atın."
+    ctaText="Kariyer Fırsatları"
+    ctaHref="/careers"
+  />
+</BaseLayout>
+

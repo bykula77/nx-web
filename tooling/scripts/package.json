@@ -1,0 +1,21 @@
+{
+  "name": "@nx-web/scripts",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate-types": "tsx generate-types.ts",
+    "validate-env": "tsx validate-env.ts",
+    "sync-env": "tsx sync-env.ts"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.12",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}
+

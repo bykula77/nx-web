@@ -1,0 +1,146 @@
+---
+import BlogLayout from '../../layouts/BlogLayout.astro';
+// import { sanityClient } from '../../sanity/client';
+// import { getPostBySlugQuery, getAllPostsQuery } from '../../sanity/queries';
+// import type { Post } from '../../sanity/types';
+
+export async function getStaticPaths() {
+  // In production, fetch from Sanity:
+  // const posts = await sanityClient.fetch(getAllPostsQuery);
+  // return posts.map((post) => ({ params: { slug: post.slug.current } }));
+
+  // Mock data for development
+  return [
+    { params: { slug: 'modern-web-gelistirmede-en-iyi-uygulamalar' } },
+    { params: { slug: 'react-19-ile-gelen-yenilikler' } },
+    { params: { slug: 'ui-ux-tasariminda-2026-trendleri' } },
+    { params: { slug: 'tailwind-css-ile-hizli-prototipleme' } },
+  ];
+}
+
+const { slug } = Astro.params;
+
+// In production, fetch from Sanity:
+// const post = await sanityClient.fetch(getPostBySlugQuery, { slug });
+
+// Mock data for development
+const post = {
+  _id: '1',
+  title: 'Modern Web Geliştirmede En İyi Uygulamalar',
+  slug: { current: slug },
+  excerpt: 'Web geliştirmede performans, erişilebilirlik ve kullanıcı deneyimi için en iyi uygulamaları keşfedin.',
+  body: null,
+  publishedAt: '2026-01-02',
+  author: { name: 'Ahmet Yılmaz', bio: 'Yazılım Mühendisi', image: null },
+  category: { title: 'Teknoloji', slug: { current: 'tech' } },
+  mainImage: null,
+};
+
+const formatDate = (dateString: string) => {
+  return new Date(dateString).toLocaleDateString('tr-TR', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+};
+---
+
+<BlogLayout title={`${post.title} - NX Web Blog`} description={post.excerpt}>
+  <article>
+    <!-- Header -->
+    <header class="mb-8">
+      {post.category && (
+        <a
+          href={`/blog?category=${post.category.slug.current}`}
+          class="text-primary-600 font-medium hover:underline"
+        >
+          {post.category.title}
+        </a>
+      )}
+      <h1 class="text-3xl md:text-4xl font-bold mt-2 mb-4">{post.title}</h1>
+      <div class="flex items-center gap-4 text-gray-600">
+        {post.author && (
+          <div class="flex items-center gap-2">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-primary-500 to-secondary-500 flex items-center justify-center text-white font-medium">
+              {post.author.name.charAt(0)}
+            </div>
+            <span>{post.author.name}</span>
+          </div>
+        )}
+        <span>•</span>
+        <time datetime={post.publishedAt}>{formatDate(post.publishedAt)}</time>
+      </div>
+    </header>
+
+    <!-- Featured Image -->
+    {post.mainImage ? (
+      <img
+        src={post.mainImage}
+        alt={post.title}
+        class="w-full aspect-video object-cover rounded-2xl mb-8"
+      />
+    ) : (
+      <div class="w-full aspect-video bg-gradient-to-br from-primary-500 to-secondary-500 rounded-2xl mb-8 flex items-center justify-center">
+        <svg class="w-24 h-24 text-white/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+        </svg>
+      </div>
+    )}
+
+    <!-- Content -->
+    <div class="prose prose-lg max-w-none">
+      <p class="lead text-xl text-gray-600 mb-6">{post.excerpt}</p>
+      
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      </p>
+
+      <h2>Başlık 1</h2>
+      <p>
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </p>
+
+      <h2>Başlık 2</h2>
+      <p>
+        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+      </p>
+
+      <blockquote>
+        "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit."
+      </blockquote>
+
+      <h2>Sonuç</h2>
+      <p>
+        At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.
+      </p>
+    </div>
+
+    <!-- Author Bio -->
+    {post.author && (
+      <div class="mt-12 pt-8 border-t border-gray-200">
+        <div class="flex items-start gap-4">
+          <div class="w-16 h-16 rounded-full bg-gradient-to-br from-primary-500 to-secondary-500 flex items-center justify-center text-white text-xl font-bold flex-shrink-0">
+            {post.author.name.charAt(0)}
+          </div>
+          <div>
+            <div class="font-semibold text-lg">{post.author.name}</div>
+            {post.author.bio && <p class="text-gray-600">{post.author.bio}</p>}
+          </div>
+        </div>
+      </div>
+    )}
+  </article>
+</BlogLayout>
+
+<style>
+  .prose h2 {
+    @apply text-2xl font-bold mt-8 mb-4;
+  }
+  .prose p {
+    @apply text-gray-700 leading-relaxed mb-4;
+  }
+  .prose blockquote {
+    @apply border-l-4 border-primary-500 pl-4 italic text-gray-600 my-6;
+  }
+</style>
+

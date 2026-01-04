@@ -1,0 +1,45 @@
+{
+  "name": "nx-web",
+  "version": "0.0.1",
+  "private": true,
+  "description": "NX-Web Turborepo Monorepo",
+  "packageManager": "pnpm@10.23.0",
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=10.0.0"
+  },
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "lint:fix": "turbo run lint:fix",
+    "type-check": "turbo run type-check",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:ui": "vitest --ui",
+    "clean": "turbo run clean && rm -rf node_modules",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md,yaml,yml}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md,yaml,yml}\"",
+    "generate-types": "pnpm --filter @nx-web/scripts generate-types",
+    "validate-env": "pnpm --filter @nx-web/scripts validate-env",
+    "sync-env": "pnpm --filter @nx-web/scripts sync-env"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "msw",
+      "sharp"
+    ]
+  },
+  "devDependencies": {
+    "@nx-web/vitest-config": "workspace:*",
+    "@types/node": "^20.17.12",
+    "@vitest/coverage-v8": "^2.0.0",
+    "@vitest/ui": "^2.0.0",
+    "prettier": "^3.4.2",
+    "turbo": "^2.3.3",
+    "typescript": "^5.7.2",
+    "vitest": "^2.0.0"
+  }
+}
