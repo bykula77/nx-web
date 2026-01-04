@@ -68,6 +68,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          packageManager: npm
           command: pages deploy apps/web/dist --project-name=nx-web --branch=${{ github.head_ref || github.ref_name }}
 
       - name: Comment PR with Preview URL

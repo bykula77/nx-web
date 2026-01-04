@@ -65,6 +65,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          packageManager: npm
           command: pages deploy apps/client-panel/dist --project-name=nx-client-panel --branch=${{ github.head_ref || github.ref_name }}
 
       - name: Comment PR with Preview URL
