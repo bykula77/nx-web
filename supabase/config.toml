@@ -33,9 +33,6 @@ shadow_port = 54320
 # server_version;` on the remote database to check.
 major_version = 17
 
-[db.branching]
-# Enable database branching for preview environments
-enabled = true
 
 [db.pooler]
 enabled = false
